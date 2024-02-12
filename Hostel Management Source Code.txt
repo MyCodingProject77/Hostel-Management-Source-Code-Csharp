@@ -1,0 +1,80 @@
+
+
+
+       Booking Source Code
+
+       SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=hosteldb;Integrated Security=True");
+            con.Open();
+            SqlCommand cmd = new SqlCommand("insert into booktab values(@guestname,@email,@roomtype,@guests,@arrival,@departure)", con);
+            cmd.Parameters.AddWithValue("@GuestName", textBox1.Text);
+            cmd.Parameters.AddWithValue("@Email", textBox2.Text);
+            cmd.Parameters.AddWithValue("@RoomType", textBox3.Text);
+            cmd.Parameters.AddWithValue("@Guests", textBox4.Text);
+            cmd.Parameters.AddWithValue("@Arrival", dateTimePicker1.Value);
+            cmd.Parameters.AddWithValue("@Departure", dateTimePicker2.Value);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Booking Successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
+
+
+
+       Save Code
+
+
+        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=hosteldb;Integrated Security=True");
+            con.Open();
+            SqlCommand cmd = new SqlCommand("insert into guestab values(@guestid,@guestname,@phone,@address)", con);
+            cmd.Parameters.AddWithValue("@GuestID", int.Parse(textBox1.Text));
+            cmd.Parameters.AddWithValue("@GuestName", textBox2.Text);
+            cmd.Parameters.AddWithValue("@Phone", textBox3.Text);
+            cmd.Parameters.AddWithValue("@Address", textBox4.Text);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Record Saved Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
+
+
+       Add Code
+
+
+       SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=hosteldb;Integrated Security=True");
+            con.Open();
+            SqlCommand cmd = new SqlCommand("select * from guestab", con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+
+
+
+
+      Delete Code
+
+
+      SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=hosteldb;Integrated Security=True");
+            con.Open();
+            SqlCommand cmd = new SqlCommand("delete guestab where guestid=@guestid", con);
+            cmd.Parameters.AddWithValue("@GuestID", int.Parse(textBox1.Text));
+            
+            cmd.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Record Deleted Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
+
+      Form_Load Code
+
+
+      SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=hosteldb;Integrated Security=True");
+            con.Open();
+            SqlCommand cmd = new SqlCommand("select * from guestab", con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
